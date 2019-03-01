@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.example.beetlestance.benji.todo.TodoViewModel"/>
+        <variable name="layoutManager" type="android.support.v7.widget.LinearLayoutManager"/>
+    </data>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 tools:context=".todo.TodoFragment">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/todoRecyclerView"
+                android:layout_width="match_parent"
+                app:adapter="@{viewModel.getTodoListAdapter()}"
+                app:layoutManager="@{layoutManager}"
+                android:layout_height="match_parent"/>
+
+    </FrameLayout>
+</layout>
