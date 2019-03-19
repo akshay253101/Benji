@@ -1,12 +1,12 @@
 package com.example.beetlestance.benji.component
 
-import com.example.beetlestance.benji.network.RetrofitApi
+import com.example.beetlestance.benji.network.NetworkModule
 import com.example.beetlestance.benji.todo.TodoViewModel
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [(RetrofitApi::class)])
+@Component(modules = [(NetworkModule::class)])
 interface ViewModelInjector{
     /**
      *Injects required dependencies into specified TodoViewModel
@@ -23,6 +23,6 @@ interface ViewModelInjector{
 
         fun build():ViewModelInjector
 
-        fun networkModule(retrofitApi: RetrofitApi):Builder
+        fun networkModule(networkModule: NetworkModule):Builder
     }
 }

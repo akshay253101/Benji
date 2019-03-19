@@ -10,11 +10,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class RetrofitApi{
+class NetworkModule{
     @Provides
     @Singleton
     internal fun retrofitInstanceProvider(): ApiService {
-        return RetrofitApi().retrofitProvider().create(ApiService::class.java)
+        return NetworkModule().retrofitProvider().create(ApiService::class.java)
     }
     @Provides
     @Singleton

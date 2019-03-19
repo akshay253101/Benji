@@ -1,10 +1,8 @@
 package com.example.beetlestance.benji.todo
 
-import android.arch.lifecycle.ViewModel
 import com.example.beetlestance.benji.base.BaseViewModel
 import com.example.beetlestance.benji.model.ApiService
 import com.example.beetlestance.benji.model.TodoListData
-import com.example.beetlestance.benji.network.RetrofitApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
