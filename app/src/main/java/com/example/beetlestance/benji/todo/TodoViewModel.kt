@@ -1,5 +1,6 @@
 package com.example.beetlestance.benji.todo
 
+import android.arch.lifecycle.MutableLiveData
 import com.example.beetlestance.benji.base.BaseViewModel
 import com.example.beetlestance.benji.network.ApiService
 import com.example.beetlestance.benji.model.TodoListData
@@ -11,8 +12,8 @@ import javax.inject.Inject
 class TodoViewModel : BaseViewModel() {
     @Inject
     lateinit var retrofitApiService: ApiService
-    val todoListAdapter: TodoListAdapter = TodoListAdapter()
     private lateinit var subscription: Disposable
+    var todoListData = MutableLiveData<List<TodoListData>>()
 
     init {
         loadPost()
@@ -27,7 +28,7 @@ class TodoViewModel : BaseViewModel() {
     }
 
     private fun onSuccess(todoListData: List<TodoListData>) {
-        todoListAdapter.updateToDoList(todoListData)
+        this.todoListData.value = todoListData
     }
 
     override fun onCleared() {
