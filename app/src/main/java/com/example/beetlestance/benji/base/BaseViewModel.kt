@@ -1,6 +1,7 @@
 package com.example.beetlestance.benji.base
 
 import android.arch.lifecycle.ViewModel
+import com.example.beetlestance.benji.MainActivityViewModel
 import com.example.beetlestance.benji.component.DaggerViewModelInjector
 import com.example.beetlestance.benji.component.ViewModelInjector
 import com.example.beetlestance.benji.network.NetworkModule
@@ -28,7 +29,8 @@ abstract class BaseViewModel:ViewModel(){
      */
     private fun inject(){
         when (this) {
-           is TodoViewModel -> injector.inject(this)
+            is TodoViewModel -> injector.inject(this)
+            is MainActivityViewModel -> injector.inject(this)
         }
     }
 }

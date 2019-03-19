@@ -1,5 +1,6 @@
 package com.example.beetlestance.benji.component
 
+import com.example.beetlestance.benji.MainActivityViewModel
 import com.example.beetlestance.benji.network.NetworkModule
 import com.example.beetlestance.benji.todo.TodoViewModel
 import dagger.Component
@@ -15,8 +16,14 @@ interface ViewModelInjector{
     fun inject(todoViewModel: TodoViewModel)
 
     /**
+     *Injects required dependencies into specified TodoViewModel
+     *@param mainActivityViewModel MainActivityViewModel in which to inject the dependencies
+     */
+    fun inject(mainActivityViewModel: MainActivityViewModel)
+
+    /**
      * Component Builder
-     * Add modules and Injector here
+     * Add modules here
      */
     @Component.Builder
     interface Builder{
