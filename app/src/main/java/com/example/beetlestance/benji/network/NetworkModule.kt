@@ -1,6 +1,5 @@
 package com.example.beetlestance.benji.network
 
-import com.example.beetlestance.benji.model.ApiService
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers

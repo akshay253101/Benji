@@ -1,5 +1,6 @@
-package com.example.beetlestance.benji.model
+package com.example.beetlestance.benji.network
 
+import com.example.beetlestance.benji.model.TodoListData
 import io.reactivex.Observable
 import retrofit2.http.GET
 
