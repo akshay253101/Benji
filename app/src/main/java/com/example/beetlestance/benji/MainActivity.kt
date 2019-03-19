@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menuItem.isChecked
         binding.navBar.setItemBackgroundResource(R.drawable.menu_background)
         if (menuItem.itemId == R.id.Tasks) {
-            fragmentTransaction.add(R.id.frameLayout, TodoFragment())
+            fragmentTransaction.add(R.id.navLayout, TodoFragment())
             fragmentTransaction.commit()
         }
         binding.drawerLayout.closeDrawers()
