@@ -4,10 +4,11 @@ import com.example.beetlestance.benji.MainActivityViewModel
 import com.example.beetlestance.benji.repositories.network.NetworkModule
 import com.example.beetlestance.benji.todo.TodoViewModel
 import dagger.Component
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [(NetworkModule::class)])
+@Component(modules = [AndroidSupportInjectionModule::class,NetworkModule::class])
 interface ViewModelInjector{
     /**
      *Injects required dependencies into specified TodoViewModel

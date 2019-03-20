@@ -1,38 +1,30 @@
 package com.example.beetlestance.benji.todo
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
 import com.example.beetlestance.benji.base.BaseViewModel
-import com.example.beetlestance.benji.network.ApiService
-import com.example.beetlestance.benji.model.TodoListData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import com.example.beetlestance.benji.repositories.dataLayer.Repositories
+import com.example.beetlestance.benji.repositories.model.TodoListData
+import com.example.beetlestance.benji.repositories.network.ApiService
 import javax.inject.Inject
 
 class TodoViewModel : BaseViewModel() {
     @Inject
-    lateinit var retrofitApiService: ApiService
-    private lateinit var subscription: Disposable
-    var todoListData = MutableLiveData<List<TodoListData>>()
+    private lateinit var retrofitApiService :ApiService
+    private val repositories = Repositories(retrofitApiService)
+    val todoListData = Transformations.map(repositories.todoListData){
+        data->convertToUiModel(data)
+    }
 
+    private fun convertToUiModel(todoListData: List<TodoListData>):List<TodoListData>{
+                return todoListData
+    }
     init {
-        loadPost()
+        repositories.loadPost()
     }
 
-    private fun loadPost() {
-
-        subscription = retrofitApiService.getNames()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result -> onSuccess(result) }
-    }
-
-    private fun onSuccess(todoListData: List<TodoListData>) {
-        this.todoListData.value = todoListData
-    }
 
     override fun onCleared() {
         super.onCleared()
-        subscription.dispose()
+        repositories.dispose()
     }
 }
