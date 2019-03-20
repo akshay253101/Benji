@@ -10,11 +10,17 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule{
+    /**
+     * Single instance is created of Retrofit ApiService through out the Application
+     */
     @Provides
     @Singleton
     internal fun retrofitInstanceProvider(): ApiService {
         return NetworkModule().retrofitProvider().create(ApiService::class.java)
     }
+    /**
+     * Provides single instance of Retrofit
+     */
     @Provides
     @Singleton
     internal fun retrofitProvider(): Retrofit {
