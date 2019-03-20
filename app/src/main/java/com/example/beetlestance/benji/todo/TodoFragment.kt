@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.databinding.TodoFragmentBinding
-import com.example.beetlestance.benji.model.TodoListData
 
 class TodoFragment : Fragment() {
 

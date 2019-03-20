@@ -14,7 +14,7 @@ fun setAdapter(view: RecyclerView,todoListAdapter: TodoListAdapter){
 }
 
 /**
- *@param todoListAdapter is the TodoListAdapter to be attached to RecyclerView
+ *@param linearLayoutManager is the LinearLayoutManager to be attached to RecyclerView
  */
 @BindingAdapter("layoutManager")
 fun setLayoutManager(view: RecyclerView,linearLayoutManager: LinearLayoutManager){

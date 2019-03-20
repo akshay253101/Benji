@@ -11,7 +11,7 @@ import javax.inject.Singleton
 interface ViewModelInjector{
     /**
      *Injects required dependencies into specified TodoViewModel
-     *@param todoViewModel TodoViewModel in whichto inject the dependencies
+     *@param todoViewModel TodoViewModel in which to inject the dependencies
      */
     fun inject(todoViewModel: TodoViewModel)
 
