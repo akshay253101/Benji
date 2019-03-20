@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.model
+package com.example.beetlestance.benji.repositories.model
 
 data class TodoListData(
     val contactId: Int,

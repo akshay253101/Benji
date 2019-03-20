@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import com.example.beetlestance.benji.MainActivityViewModel
 import com.example.beetlestance.benji.component.DaggerViewModelInjector
 import com.example.beetlestance.benji.component.ViewModelInjector
-import com.example.beetlestance.benji.network.NetworkModule
+import com.example.beetlestance.benji.repositories.network.NetworkModule
 import com.example.beetlestance.benji.todo.TodoViewModel
 
 /**

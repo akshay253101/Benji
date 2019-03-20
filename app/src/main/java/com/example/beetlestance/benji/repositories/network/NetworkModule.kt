@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.network
+package com.example.beetlestance.benji.repositories.network
 
 import dagger.Module
 import dagger.Provides
