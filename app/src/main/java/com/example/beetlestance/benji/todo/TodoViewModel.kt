@@ -1,6 +1,7 @@
 package com.example.beetlestance.benji.todo
 
 import android.arch.lifecycle.Transformations
+import android.arch.lifecycle.ViewModel
 import com.example.beetlestance.benji.base.BaseViewModel
 import com.example.beetlestance.benji.repositories.dataLayer.Repositories
 import com.example.beetlestance.benji.repositories.model.TodoListData
@@ -9,11 +10,10 @@ import javax.inject.Inject
 
 class TodoViewModel : BaseViewModel() {
     @Inject
-    private lateinit var retrofitApiService :ApiService
+    lateinit var retrofitApiService :ApiService
     private val repositories = Repositories(retrofitApiService)
     val todoListData = Transformations.map(repositories.todoListData){
-        data->convertToUiModel(data)
-    }
+            data->convertToUiModel(data)}!!
 
     private fun convertToUiModel(todoListData: List<TodoListData>):List<TodoListData>{
                 return todoListData
