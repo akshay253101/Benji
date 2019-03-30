@@ -1,5 +1,5 @@
 package com.example.beetlestance.benji
 
-import com.example.beetlestance.benji.base.BaseViewModel
+import android.arch.lifecycle.ViewModel
 
-class MainActivityViewModel : BaseViewModel()
+class MainActivityViewModel : ViewModel()

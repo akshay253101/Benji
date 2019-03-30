@@ -1,25 +1,26 @@
 package com.example.beetlestance.benji.repositories.dataLayer
 
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
 import com.example.beetlestance.benji.repositories.model.TodoListData
 import com.example.beetlestance.benji.repositories.network.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class Repositories(private var retrofitApiService: ApiService){
+class Repositories @Inject constructor(private var retrofitApiService: ApiService) {
 
     private lateinit var subscription: Disposable
     var todoListData = MutableLiveData<List<TodoListData>>()
-
-    fun loadPost(){
+    fun loadPost() {
         subscription = retrofitApiService.getNames()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result -> todoListData.value = result }
     }
 
-    fun dispose(){
+    fun dispose() {
         subscription.dispose()
     }
 }

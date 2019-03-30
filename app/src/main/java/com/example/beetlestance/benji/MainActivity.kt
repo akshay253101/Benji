@@ -6,12 +6,12 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.example.beetlestance.benji.databinding.ActivityMainBinding
 import com.example.beetlestance.benji.todo.TodoFragment
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
