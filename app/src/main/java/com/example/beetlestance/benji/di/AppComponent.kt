@@ -4,7 +4,7 @@ import com.example.beetlestance.benji.MainApplication
 import com.example.beetlestance.benji.di.modules.AppBindingModule
 import com.example.beetlestance.benji.di.modules.AppModule
 import com.example.beetlestance.benji.di.modules.NetworkModule
-import com.example.beetlestance.benji.di.modules.ViewModelFactory.ViewModelBindingModule
+import com.example.beetlestance.benji.di.modules.ViewModelModule.ViewModelBindingModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule

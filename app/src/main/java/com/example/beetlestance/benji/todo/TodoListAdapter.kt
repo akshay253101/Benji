@@ -29,7 +29,6 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
     fun updateToDoList(todoListData: List<TodoListData>) {
         this.todoList = todoListData
         notifyDataSetChanged()
-
     }
 
     class ViewHolder(private val itemBinding: TodoListItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {

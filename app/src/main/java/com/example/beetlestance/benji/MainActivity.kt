@@ -3,15 +3,18 @@ package com.example.beetlestance.benji
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI.navigateUp
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.beetlestance.benji.databinding.ActivityMainBinding
-import com.example.beetlestance.benji.todo.TodoFragment
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
@@ -25,30 +28,23 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
         actionBarSetup()
-        binding.navBar.setNavigationItemSelectedListener(this)
+        setUpNavigation()
     }
 
     private fun actionBarSetup() {
-        setSupportActionBar(binding.toolBar)
+        setSupportActionBar(toolBar)
         val actionBar: ActionBar? = supportActionBar
         actionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp)
         }
 
-        toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         toggle.syncState()
     }
 
-    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        menuItem.isChecked
-        binding.navBar.setItemBackgroundResource(R.drawable.menu_background)
-        if (menuItem.itemId == R.id.Tasks) {
-            fragmentTransaction.add(R.id.navLayout, TodoFragment())
-            fragmentTransaction.commit()
-        }
-        binding.drawerLayout.closeDrawers()
-        return true
+    override fun onSupportNavigateUp(): Boolean {
+        return navigateUp(findNavController(R.id.nav_host_fragment), drawerLayout)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -56,6 +52,17 @@ class MainActivity : DaggerAppCompatActivity(), NavigationView.OnNavigationItemS
             true
         else
             super.onOptionsItemSelected(item)
+    }
+
+    private fun setUpNavigation(){
+        val navController = findNavController(R.id.nav_host_fragment)
+        toolBar.setupWithNavController(navController,drawerLayout)
+        navBar.setNavigationItemSelectedListener{
+            menuItem -> menuItem.isChecked =true
+            drawerLayout.closeDrawers()
+            true
+        }
+        setupWithNavController(navBar,navController)
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.di.modules.ViewModelFactory
+package com.example.beetlestance.benji.di.modules.ViewModelModule
 
 import android.arch.lifecycle.ViewModelProvider
 import dagger.Binds
