@@ -8,7 +8,8 @@ import javax.inject.Inject
 
 class TodoViewModel @Inject constructor(var repositories : Repositories) : ViewModel() {
 
-    val todoListData = Transformations.map(repositories.todoListData) { data -> convertToUiModel(data) }!!
+    val todoListData = Transformations
+        .map(repositories.todoListData) { data -> convertToUiModel(data) }
 
     private fun convertToUiModel(todoListData: List<TodoListData>): List<TodoListData> {
         return todoListData

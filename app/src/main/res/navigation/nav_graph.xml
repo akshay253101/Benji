@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph" app:startDestination="@id/todoFragment">
-    <fragment android:id="@+id/todoFragment" android:name="com.example.beetlestance.benji.todo.TodoFragment"
-              android:label="TodoFragment"/>
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/todoFragment">
+    <fragment android:id="@+id/todoFragment"
+              android:name="com.example.beetlestance.benji.todo.TodoFragment"
+              android:label="TodoFragment">
+        <action android:id="@+id/action_todoFragment_to_about" app:destination="@id/about"/>
+    </fragment>
+    <fragment android:id="@+id/about"
+              android:name="com.example.beetlestance.benji.about.About"
+              android:label="About"
+              tools:layout="@layout/about_fragment">
+        <action android:id="@+id/action_about_self" app:destination="@id/about"/>
+    </fragment>
 </navigation>
