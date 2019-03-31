@@ -1,7 +1,7 @@
 package com.example.beetlestance.benji.todo
 
-import android.arch.lifecycle.Transformations
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.example.beetlestance.benji.repositories.dataLayer.Repositories
 import com.example.beetlestance.benji.repositories.model.TodoListData
 import javax.inject.Inject

@@ -1,8 +1,8 @@
 package com.example.beetlestance.benji.todo
 
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.databinding.TodoListItemBinding

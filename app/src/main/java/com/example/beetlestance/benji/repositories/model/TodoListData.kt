@@ -1,5 +1,7 @@
 package com.example.beetlestance.benji.repositories.model
-
+/*
+*   Model Class for todoListJson
+*/
 data class TodoListData(
     val contactId: Int,
     val email: String,

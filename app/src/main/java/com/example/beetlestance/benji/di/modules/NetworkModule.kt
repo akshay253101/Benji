@@ -9,6 +9,12 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Defines all the network classes that need to be provided in the scope of the app.
+ *
+ * Define here all objects that are shared throughout the app, like [retrofitInstanceProvider].
+ * If some of those objects are singletons, they should be annotated with `@Singleton`.
+ */
 @Module
 class NetworkModule {
     /**

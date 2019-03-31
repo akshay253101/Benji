@@ -1,10 +1,13 @@
-package com.example.beetlestance.benji.di.modules.ViewModelModule
+package com.example.beetlestance.benji.di.modules.viewModelModule
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
 
+/**
+ * ViewModel Factory which uses dagger to create instances.
+ */
 class DaggerAwareViewModelFactory @Inject constructor(
     private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {

@@ -17,7 +17,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -34,22 +34,22 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$android_support_version"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation "com.android.support:support-v4:$android_support_version"
+    implementation "androidx.appcompat:appcompat:$android_support_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.legacy:legacy-support-v4:$android_support_version"
 
     // Android Lifecycle Architecture And View Model
-    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
 
     // JUnit Test
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
     // Recycler View
-    implementation "com.android.support:recyclerview-v7:$android_support_version"
-    implementation "com.android.support:design:$android_support_version"
+    implementation "androidx.recyclerview:recyclerview:$android_support_version"
+    implementation "com.google.android.material:material:$android_support_version"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
