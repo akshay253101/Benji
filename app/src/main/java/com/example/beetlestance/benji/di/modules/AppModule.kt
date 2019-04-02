@@ -1,11 +1,10 @@
 package com.example.beetlestance.benji.di.modules
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
 import com.example.beetlestance.benji.MainApplication
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 /**
  * Defines all the classes that need to be provided in the scope of the app.
@@ -20,6 +19,8 @@ class AppModule {
     /**
      * Provide Application Context
      */
+
+    @Named("AppContext")
     @Provides
     fun provideContext(mainApplication: MainApplication): Context {
         return mainApplication.applicationContext
