@@ -4,12 +4,18 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.util.Log
-
+import com.example.beetlestance.benji.di.modules.AppModule
+import dagger.Module
+import dagger.Provides
 import java.util.Objects
+import javax.inject.Named
 
-object ConnectionCheck {
+@Module(includes = [AppModule::class])
+class ConnectionCheck {
 
-    fun isOnline(context: Context): Boolean {
+    @Named("isOnline")
+    @Provides
+    fun isOnline(@Named("AppContext")context: Context): Boolean {
         val connectivityManager: ConnectivityManager
         var networkInfo: NetworkInfo? = null
 

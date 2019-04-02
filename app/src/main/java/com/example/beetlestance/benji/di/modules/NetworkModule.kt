@@ -1,10 +1,9 @@
 package com.example.beetlestance.benji.di.modules
 
+import android.content.Context
 import androidx.annotation.NonNull
-import com.example.beetlestance.benji.MainApplication
 import com.example.beetlestance.benji.repositories.network.ApiService
 import com.example.beetlestance.benji.repositories.network.ConnectionCheck
-import com.example.beetlestance.benji.repositories.network.ConnectionCheck.isOnline
 import com.example.beetlestance.benji.repositories.network.NoConnectivityException
 import dagger.Module
 import dagger.Provides
@@ -17,6 +16,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -25,24 +25,27 @@ import javax.inject.Singleton
  * Define here all objects that are shared throughout the app, like [retrofitInstanceProvider].
  * If some of those objects are singletons, they should be annotated with `@Singleton`.
  */
-@Module
+@Module(includes = [AppModule::class, ConnectionCheck::class])
 class NetworkModule : Interceptor {
+
+    private var isOnline: Boolean = false
+    private lateinit var context: Context
+    private val Cache_Control = "cache-control"
 
     /**
      * Single instance is created of Retrofit ApiService through out the Application
      */
+
     @Singleton
     @Provides
-    fun retrofitInstanceProvider(): ApiService {
+    fun retrofitInstanceProvider(@Named("AppContext") context: Context, @Named("isOnline") isOnline: Boolean): ApiService {
+        this.isOnline = isOnline
+        this.context = context
         return retrofitProvider().create(ApiService::class.java)
     }
 
-    /**
-     * Provides single instance of Retrofit
-     */
     @Singleton
-    @Provides
-    fun retrofitProvider(): Retrofit {
+    private fun retrofitProvider(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://raw.githubusercontent.com/akshay253101/ContactKotlin/master/")
             .addConverterFactory(MoshiConverterFactory.create())
@@ -51,8 +54,6 @@ class NetworkModule : Interceptor {
             .build()
 
     }
-
-    private val Cache_Control = "cache-control"
 
     private fun okHttpClient(): OkHttpClient {
 
@@ -72,21 +73,22 @@ class NetworkModule : Interceptor {
         return httpLoggingInterceptor
     }
 
-    private fun provideOfflineCacheInterceptor() = Interceptor { chain ->
-        var request = chain.request()
-        request = if (ConnectionCheck.isOnline(MainApplication.getContext())) {
-            val cacheControl = CacheControl.Builder().maxStale(7, TimeUnit.DAYS).build()
-            request.newBuilder().cacheControl(cacheControl).build()
-        } else {
-            val cacheHeaderValue = if (isOnline(MainApplication.getContext()))
-                "public, max-age=2419200"
-            else
-                "public, only-if-cached, max-stale=2419200"
-            request.newBuilder().header("Cache-Control", cacheHeaderValue)
-                .build()
+    private fun provideOfflineCacheInterceptor() =
+        Interceptor { chain ->
+            var request = chain.request()
+            request = if (isOnline) {
+                val cacheControl = CacheControl.Builder().maxStale(7, TimeUnit.DAYS).build()
+                request.newBuilder().cacheControl(cacheControl).build()
+            } else {
+                val cacheHeaderValue = if (isOnline)
+                    "public, max-age=2419200"
+                else
+                    "public, only-if-cached, max-stale=2419200"
+                request.newBuilder().header("Cache-Control", cacheHeaderValue)
+                    .build()
+            }
+            chain.proceed(request)
         }
-        chain.proceed(request)
-    }
 
     private fun provideCacheInterceptor() = Interceptor { chain ->
         val response = chain.proceed(chain.request())
@@ -98,7 +100,7 @@ class NetworkModule : Interceptor {
     private fun provideCache(): Cache? {
         var cache: Cache? = null
         try {
-            cache = Cache(File(MainApplication.getContext().cacheDir, "http-cache"), (10 * 1024 * 1024).toLong())
+            cache = Cache(File(context.cacheDir, "http-cache"), (10 * 1024 * 1024).toLong())
 
         } catch (e: Exception) {
             println("Error " + e.message)
@@ -106,10 +108,9 @@ class NetworkModule : Interceptor {
         return cache
     }
 
-
     @Throws(IOException::class)
     override fun intercept(@NonNull chain: Interceptor.Chain): Response {
-        if (!ConnectionCheck.isOnline(MainApplication.getContext())) {
+        if (!isOnline) {
             throw NoConnectivityException()
         }
         val builder = chain.request().newBuilder()

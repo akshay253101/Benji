@@ -6,7 +6,6 @@ import com.example.beetlestance.benji.di.AppComponent
 import com.example.beetlestance.benji.di.modules.viewModelModule.ViewModelKey
 import com.example.beetlestance.benji.di.scope.ActivityScoped
 import com.example.beetlestance.benji.di.scope.FragmentScoped
-import com.example.beetlestance.benji.repositories.dataLayer.Repositories
 import com.example.beetlestance.benji.todo.TodoFragment
 import com.example.beetlestance.benji.todo.TodoViewModel
 import dagger.Binds

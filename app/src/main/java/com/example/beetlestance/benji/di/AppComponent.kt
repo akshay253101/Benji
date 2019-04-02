@@ -5,6 +5,7 @@ import com.example.beetlestance.benji.di.modules.AppBindingModule
 import com.example.beetlestance.benji.di.modules.AppModule
 import com.example.beetlestance.benji.di.modules.NetworkModule
 import com.example.beetlestance.benji.di.modules.viewModelModule.ViewModelBindingModule
+import com.example.beetlestance.benji.repositories.network.ConnectionCheck
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
