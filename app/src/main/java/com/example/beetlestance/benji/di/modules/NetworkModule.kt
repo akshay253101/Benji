@@ -4,6 +4,7 @@ import androidx.annotation.NonNull
 import com.example.beetlestance.benji.MainApplication
 import com.example.beetlestance.benji.repositories.network.ApiService
 import com.example.beetlestance.benji.repositories.network.ConnectionCheck
+import com.example.beetlestance.benji.repositories.network.ConnectionCheck.isOnline
 import com.example.beetlestance.benji.repositories.network.NoConnectivityException
 import dagger.Module
 import dagger.Provides
@@ -73,11 +74,16 @@ class NetworkModule : Interceptor {
 
     private fun provideOfflineCacheInterceptor() = Interceptor { chain ->
         var request = chain.request()
-        request = if (!ConnectionCheck.isOnline(MainApplication.getContext())) {
+        request = if (ConnectionCheck.isOnline(MainApplication.getContext())) {
             val cacheControl = CacheControl.Builder().maxStale(7, TimeUnit.DAYS).build()
             request.newBuilder().cacheControl(cacheControl).build()
         } else {
-            request.newBuilder().header("Cache-Control", "public, max-age=" + 60).build()
+            val cacheHeaderValue = if (isOnline(MainApplication.getContext()))
+                "public, max-age=2419200"
+            else
+                "public, only-if-cached, max-stale=2419200"
+            request.newBuilder().header("Cache-Control", cacheHeaderValue)
+                .build()
         }
         chain.proceed(request)
     }
@@ -86,31 +92,26 @@ class NetworkModule : Interceptor {
         val response = chain.proceed(chain.request())
         val cacheControl = CacheControl.Builder().maxStale(2, TimeUnit.DAYS).build()
 
-        response.newBuilder().header(Cache_Control, cacheControl.toString()).build()
+        response.newBuilder().removeHeader("Pragma").header(Cache_Control, cacheControl.toString()).build()
     }
 
     private fun provideCache(): Cache? {
-
         var cache: Cache? = null
-
         try {
             cache = Cache(File(MainApplication.getContext().cacheDir, "http-cache"), (10 * 1024 * 1024).toLong())
 
         } catch (e: Exception) {
             println("Error " + e.message)
         }
-
         return cache
     }
 
 
     @Throws(IOException::class)
     override fun intercept(@NonNull chain: Interceptor.Chain): Response {
-
         if (!ConnectionCheck.isOnline(MainApplication.getContext())) {
             throw NoConnectivityException()
         }
-
         val builder = chain.request().newBuilder()
         return chain.proceed(builder.build())
     }
