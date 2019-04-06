@@ -6,7 +6,7 @@ import com.example.beetlestance.benji.model.TodoListData
 import com.example.beetlestance.benji.repositories.Repositories
 import javax.inject.Inject
 
-class TodoViewModel @Inject constructor(var repositories : Repositories) : ViewModel() {
+class TodoViewModel @Inject constructor(var repositories: Repositories) : ViewModel() {
 
     val todoListData = Transformations
         .map(repositories.todoListData) { data -> convertToUiModel(data) }
