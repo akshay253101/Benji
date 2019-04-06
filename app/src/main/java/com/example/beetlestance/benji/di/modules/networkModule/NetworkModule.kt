@@ -3,7 +3,7 @@ package com.example.beetlestance.benji.di.modules.networkModule
 import android.content.Context
 import androidx.annotation.NonNull
 import com.example.beetlestance.benji.di.modules.AppModule
-import com.example.beetlestance.benji.domain.ApiService
+import com.example.beetlestance.benji.data.RetrofitApiService
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -32,15 +32,16 @@ class NetworkModule : Interceptor {
     private val Cache_Control = "cache-control"
 
     /**
-     * Single instance is created of Retrofit ApiService through out the Application
+     * Single instance is created of Retrofit RetrofitApiService through out the Application
      */
 
     @Singleton
     @Provides
-    fun retrofitInstanceProvider(@Named("AppContext") context: Context, @Named("isOnline") isOnline: Boolean): ApiService {
+    fun retrofitInstanceProvider(@Named("AppContext") context: Context,
+                                 @Named("isOnline") isOnline: Boolean): RetrofitApiService {
         this.isOnline = isOnline
         this.context = context
-        return retrofitProvider().create(ApiService::class.java)
+        return retrofitProvider().create(RetrofitApiService::class.java)
     }
 
     @Singleton

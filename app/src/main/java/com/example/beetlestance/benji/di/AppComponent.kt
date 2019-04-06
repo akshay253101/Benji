@@ -4,6 +4,7 @@ import com.example.beetlestance.benji.MainApplication
 import com.example.beetlestance.benji.di.modules.ActivityBindingModule
 import com.example.beetlestance.benji.di.modules.AppModule
 import com.example.beetlestance.benji.di.modules.networkModule.NetworkModule
+import com.example.beetlestance.benji.di.modules.roomDatabaseModule.RoomDatabaseModule
 import com.example.beetlestance.benji.di.modules.viewModelModule.ViewModelBindingModule
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -19,7 +20,11 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class, AppModule::class, ActivityBindingModule::class, ViewModelBindingModule::class])
+@Component(
+    modules = [AndroidSupportInjectionModule::class,
+        NetworkModule::class, AppModule::class, ActivityBindingModule::class, ViewModelBindingModule::class,
+        RoomDatabaseModule::class]
+)
 interface AppComponent : AndroidInjector<MainApplication> {
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<MainApplication>()
