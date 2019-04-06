@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.about
+package com.example.beetlestance.benji.ui.about
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

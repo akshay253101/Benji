@@ -5,12 +5,12 @@
             android:id="@+id/nav_graph"
             app:startDestination="@id/todoFragment">
     <fragment android:id="@+id/todoFragment"
-              android:name="com.example.beetlestance.benji.todo.TodoFragment"
+              android:name="com.example.beetlestance.benji.ui.todo.TodoFragment"
               android:label="TodoFragment">
         <action android:id="@+id/action_todoFragment_to_about" app:destination="@id/about"/>
     </fragment>
     <fragment android:id="@+id/about"
-              android:name="com.example.beetlestance.benji.about.About"
+              android:name="com.example.beetlestance.benji.ui.about.About"
               android:label="About"
               tools:layout="@layout/about_fragment">
         <action android:id="@+id/action_about_self" app:destination="@id/about"/>

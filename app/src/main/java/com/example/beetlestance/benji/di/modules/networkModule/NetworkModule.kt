@@ -1,10 +1,9 @@
-package com.example.beetlestance.benji.di.modules
+package com.example.beetlestance.benji.di.modules.networkModule
 
 import android.content.Context
 import androidx.annotation.NonNull
-import com.example.beetlestance.benji.repositories.network.ApiService
-import com.example.beetlestance.benji.repositories.network.ConnectionCheck
-import com.example.beetlestance.benji.repositories.network.NoConnectivityException
+import com.example.beetlestance.benji.di.modules.AppModule
+import com.example.beetlestance.benji.domain.ApiService
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -25,7 +24,7 @@ import javax.inject.Singleton
  * Define here all objects that are shared throughout the app, like [retrofitInstanceProvider].
  * If some of those objects are singletons, they should be annotated with `@Singleton`.
  */
-@Module(includes = [AppModule::class, ConnectionCheck::class])
+@Module(includes = [AppModule::class, ConnectionCheckModule::class])
 class NetworkModule : Interceptor {
 
     private var isOnline: Boolean = false
@@ -55,6 +54,9 @@ class NetworkModule : Interceptor {
 
     }
 
+    /*
+    * Provides Cache mechanism for retrofit
+    */
     private fun okHttpClient(): OkHttpClient {
 
         return OkHttpClient.Builder()
@@ -67,12 +69,19 @@ class NetworkModule : Interceptor {
             .build()
     }
 
+    /*
+    * Provides Http Logs.
+    */
+
     private fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val httpLoggingInterceptor = HttpLoggingInterceptor {}
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
         return httpLoggingInterceptor
     }
 
+    /*
+    * Check for whether cache is provide or not for current request
+    */
     private fun provideOfflineCacheInterceptor() =
         Interceptor { chain ->
             var request = chain.request()
@@ -81,9 +90,9 @@ class NetworkModule : Interceptor {
                 request.newBuilder().cacheControl(cacheControl).build()
             } else {
                 val cacheHeaderValue = if (isOnline)
-                    "public, max-age=2419200"
+                    "public, max-age=2419200"       // if online check for cache is expired or not if not provide from cache else make network request
                 else
-                    "public, only-if-cached, max-stale=2419200"
+                    "public, only-if-cached, max-stale=2419200" // only-if-cached now no network request will be made response will be provided only from cache.
                 request.newBuilder().header("Cache-Control", cacheHeaderValue)
                     .build()
             }
@@ -94,9 +103,12 @@ class NetworkModule : Interceptor {
         val response = chain.proceed(chain.request())
         val cacheControl = CacheControl.Builder().maxStale(2, TimeUnit.DAYS).build()
 
-        response.newBuilder().removeHeader("Pragma").header(Cache_Control, cacheControl.toString()).build()
+        response.newBuilder().removeHeader("Pragma").header(Cache_Control, cacheControl.toString()).build() // remove header pragma in case http header contains value no-cache
     }
 
+    /*
+    * Store cache in local storage
+    * */
     private fun provideCache(): Cache? {
         var cache: Cache? = null
         try {

@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.repositories.network
+package com.example.beetlestance.benji.di.modules.networkModule
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -10,8 +10,12 @@ import dagger.Provides
 import java.util.Objects
 import javax.inject.Named
 
+/**
+* ConnectionCheckModule provides isUserOnline or not.
+*/
+
 @Module(includes = [AppModule::class])
-class ConnectionCheck {
+class ConnectionCheckModule {
 
     @Named("isOnline")
     @Provides

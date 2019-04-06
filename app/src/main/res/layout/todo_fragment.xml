@@ -3,12 +3,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="adapter" type="com.example.beetlestance.benji.todo.TodoListAdapter"/>
+        <variable name="adapter" type="com.example.beetlestance.benji.ui.todo.TodoListAdapter"/>
         <variable name="layoutManager" type="androidx.recyclerview.widget.LinearLayoutManager"/>
     </data>
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent"
-                 tools:context=".todo.TodoFragment">
+                 tools:context=".ui.todo.TodoFragment">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/todoRecyclerView"

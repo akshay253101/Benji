@@ -1,9 +1,7 @@
 package com.example.beetlestance.benji.utils
 
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.beetlestance.benji.todo.TodoListAdapter
+import com.example.beetlestance.benji.ui.todo.TodoListAdapter
 
 /**
  *@param todoListAdapter is the TodoListAdapter to be attached to RecyclerView

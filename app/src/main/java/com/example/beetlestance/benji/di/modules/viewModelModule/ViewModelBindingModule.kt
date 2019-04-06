@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 
-
+/**
+* [ViewModelBindingModule] is a module to provide ViewModelFactory which is dagger aware
+*/
 @Module
 abstract class ViewModelBindingModule {
     @Binds

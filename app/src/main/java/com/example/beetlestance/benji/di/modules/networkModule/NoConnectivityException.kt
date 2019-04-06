@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.repositories.network
+package com.example.beetlestance.benji.di.modules.networkModule
 
 import java.io.IOException
 

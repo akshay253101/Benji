@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.repositories.model
+package com.example.beetlestance.benji.model
 /*
 *   Model Class for todoListJson
 */

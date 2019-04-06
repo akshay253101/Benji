@@ -1,9 +1,9 @@
-package com.example.beetlestance.benji.todo
+package com.example.beetlestance.benji.ui.todo
 
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.beetlestance.benji.repositories.dataLayer.Repositories
-import com.example.beetlestance.benji.repositories.model.TodoListData
+import com.example.beetlestance.benji.model.TodoListData
+import com.example.beetlestance.benji.repositories.Repositories
 import javax.inject.Inject
 
 class TodoViewModel @Inject constructor(var repositories : Repositories) : ViewModel() {

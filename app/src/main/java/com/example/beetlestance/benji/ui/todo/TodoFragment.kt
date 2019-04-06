@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.todo
+package com.example.beetlestance.benji.ui.todo
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 class TodoFragment : DaggerFragment() {
 
-    @Inject lateinit var viewModelFactory : ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: TodoFragmentBinding
     private lateinit var viewModel: TodoViewModel
     private val todoListAdapter = TodoListAdapter()
@@ -29,7 +30,7 @@ class TodoFragment : DaggerFragment() {
         binding.layoutManager = LinearLayoutManager(context)
         binding.adapter = todoListAdapter
 
-        viewModel = ViewModelProviders.of(this@TodoFragment,viewModelFactory).get(TodoViewModel::class.java)
+        viewModel = ViewModelProviders.of(this@TodoFragment, viewModelFactory).get(TodoViewModel::class.java)
         viewModel.todoListData.observe(
             this@TodoFragment,
             Observer { todoListData -> if (todoListData != null) todoListAdapter.updateToDoList(todoListData) })

@@ -1,18 +1,12 @@
 package com.example.beetlestance.benji.di.modules
 
-import androidx.lifecycle.ViewModel
 import com.example.beetlestance.benji.MainActivity
 import com.example.beetlestance.benji.di.AppComponent
-import com.example.beetlestance.benji.di.modules.viewModelModule.ViewModelKey
 import com.example.beetlestance.benji.di.scope.ActivityScoped
-import com.example.beetlestance.benji.di.scope.FragmentScoped
-import com.example.beetlestance.benji.todo.TodoFragment
-import com.example.beetlestance.benji.todo.TodoViewModel
-import dagger.Binds
+import com.example.beetlestance.benji.ui.todo.TodoFragmentModule
 import dagger.android.AndroidInjector
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import dagger.multibindings.IntoMap
 
 /**
  * We want Dagger.Android to create a SubComponent which has a parent Component of whichever module
@@ -25,30 +19,14 @@ import dagger.multibindings.IntoMap
  */
 
 @Module
-abstract class AppBindingModule {
+abstract class ActivityBindingModule {
 
     /**
      * Generates an [AndroidInjector] for the [MainActivity].
      * With [ActivityScoped]
      */
     @ActivityScoped
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [TodoFragmentModule::class])
     abstract fun bindMainActivity(): MainActivity
 
-    /**
-     * Generates an [AndroidInjector] for the [TodoFragment].
-     * With [FragmentScoped]
-     */
-    @FragmentScoped
-    @ContributesAndroidInjector
-    abstract fun bindTodoFragment(): TodoFragment
-
-    /**
-     * The ViewModels are created by Dagger in a map. Via the @ViewModelKey, we define that we
-     * want to get a [TodoViewModel] class.
-     */
-    @Binds
-    @IntoMap
-    @ViewModelKey(TodoViewModel::class)
-    abstract fun bindTodoViewModel(viewModel: TodoViewModel): ViewModel
 }

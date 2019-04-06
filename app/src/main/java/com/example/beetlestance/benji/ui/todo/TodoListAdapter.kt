@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.todo
+package com.example.beetlestance.benji.ui.todo
 
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.databinding.TodoListItemBinding
-import com.example.beetlestance.benji.repositories.model.TodoListData
+import com.example.beetlestance.benji.model.TodoListData
 
 class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
 
