@@ -9,6 +9,7 @@ buildscript {
     ext.navigationVersion = '1.0.0'
     ext.rxjava_version = '2.1.0'
     ext.dagger_version = '2.21'
+    ext.room_version = "2.1.0-alpha06"
     repositories {
         google()
         jcenter()

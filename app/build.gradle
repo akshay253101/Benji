@@ -36,6 +36,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:1.0.2"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+
+    // Android X
+    implementation "androidx.legacy:legacy-support-v4:$androidx_version"
     implementation "androidx.legacy:legacy-support-v4:$androidx_version"
 
     // Android Lifecycle Architecture And View Model
@@ -43,10 +46,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
 
     // JUnit Test
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
+    testImplementation "androidx.room:room-testing:$room_version"
+
 
     // Recycler View
     implementation "androidx.recyclerview:recyclerview:$androidx_version"
@@ -73,4 +77,9 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment:$navigationVersion"
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
+
+    // Room Database
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
 }
