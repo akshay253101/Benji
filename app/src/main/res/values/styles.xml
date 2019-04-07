@@ -1,16 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <!-- base set of styles that apply to all versions -->
+    <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- This style is where you define the tint color of your overflow menu button -->
-    <style name="MyActionButtonOverflow" parent="Widget.MaterialComponents.BottomAppBar">
-        <item name="android:tint">@android:color/white</item>
+    <!-- declare the theme name that's actually applied in the manifest file -->
+    <style name="AppTheme" parent="BaseAppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:textColorSecondary">@android:color/white</item> <!-- Change three dots(Overflow Color) bottom app bar. -->
     </style>
     
     <style name="NavigationDrawerStyle">

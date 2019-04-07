@@ -9,7 +9,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.ViewGroup
 import com.example.beetlestance.benji.databinding.TodoFragmentBinding
+import com.example.beetlestance.benji.model.TodoListData
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.todo_fragment.*
 import javax.inject.Inject
 
 class TodoFragment : DaggerFragment() {
@@ -33,7 +35,12 @@ class TodoFragment : DaggerFragment() {
         viewModel = ViewModelProviders.of(this@TodoFragment, viewModelFactory).get(TodoViewModel::class.java)
         viewModel.todoListData.observe(
             this@TodoFragment,
-            Observer { todoListData -> if (todoListData != null) todoListAdapter.updateToDoList(todoListData) })
+            Observer { todoListData -> if (todoListData != null) hideProgressBar(todoListData) })
     }
 
+    private fun hideProgressBar(todoListData: List<TodoListData>) {
+        progressBar.hide()
+        todoListAdapter.updateToDoList(todoListData = todoListData)
+        todoRecyclerView.visibility = View.VISIBLE
+    }
 }

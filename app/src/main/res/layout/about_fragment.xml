@@ -1,13 +1,33 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
+             android:id="@+id/about"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".ui.about.About">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.circularreveal.CircularRevealLinearLayout
+            android:id="@+id/circular_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+        <!-- TODO: Update blank fragment layout -->
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@android:color/black"
+                  android:textSize="@dimen/text_size_xxlarge"
+                  android:paddingStart="@dimen/margin_padding_size_xxlarge"
+                  android:paddingEnd="@dimen/margin_padding_size_xxlarge"
+                  android:layout_marginTop="@dimen/margin_padding_size_large"
+                  android:layout_marginBottom="@dimen/margin_padding_size_large"
+                  android:text="@string/about"
+                  android:fontFamily="sans-serif"/>
 
+        <TextView
+                android:id="@+id/app_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/margin_padding_size_medium"
+                android:paddingEnd="@dimen/margin_padding_size_medium"
+                android:text="@string/hello_blank_fragment"/>
+    </com.google.android.material.circularreveal.CircularRevealLinearLayout>
 </FrameLayout>

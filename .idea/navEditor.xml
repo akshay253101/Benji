@@ -19,7 +19,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_about_self">
+                            <entry key="action_about_to_nav_graph">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -40,7 +40,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_todoFragment_to_about">
+                            <entry key="action_todoFragment_to_nav_graph">
                               <value>
                                 <LayoutPositions />
                               </value>

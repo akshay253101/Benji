@@ -10,12 +10,38 @@
                  android:layout_height="match_parent"
                  tools:context=".ui.todo.TodoFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/todoRecyclerView"
-                app:adapter="@{adapter}"
-                app:layoutManager="@{layoutManager}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <androidx.core.widget.ContentLoadingProgressBar android:id="@+id/progressBar"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        style="?android:progressBarStyleLarge"
+                                                        android:layout_gravity="center"/>
 
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      tools:ignore="UselessParent">
+
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textColor="@android:color/black"
+                      android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+                      android:paddingStart="@dimen/margin_padding_size_xxlarge"
+                      android:paddingEnd="@dimen/margin_padding_size_xxlarge"
+                      android:layout_marginTop="@dimen/margin_padding_size_large"
+                      android:layout_marginBottom="@dimen/margin_padding_size_large"
+                      android:text="@string/my_task"
+                      android:fontFamily="sans-serif"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/todoRecyclerView"
+                    app:adapter="@{adapter}"
+                    android:paddingStart="@dimen/margin_padding_size_medium"
+                    android:paddingEnd="@dimen/margin_padding_size_medium"
+                    app:layoutManager="@{layoutManager}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"/>
+        </LinearLayout>
     </FrameLayout>
 </layout>
