@@ -3,18 +3,18 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_graph"
-            app:startDestination="@id/todoFragment">
-    <fragment android:id="@+id/todoFragment"
+            app:startDestination="@id/action_about_to_todoFragment">
+    <fragment android:id="@+id/action_about_to_todoFragment"
               android:name="com.example.beetlestance.benji.ui.todo.TodoFragment"
               android:label="TodoFragment">
-        <action android:id="@+id/action_todoFragment_to_about" app:destination="@id/about"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action android:id="@+id/action_todoFragment_to_about" app:destination="@+id/action_todoFragment_to_about"
+                app:enterAnim="@anim/up_from_bottom" app:exitAnim="@anim/slide_out_right"/>
     </fragment>
-    <fragment android:id="@+id/about"
+    <fragment android:id="@+id/action_todoFragment_to_about"
               android:name="com.example.beetlestance.benji.ui.about.About"
               android:label="About"
               tools:layout="@layout/about_fragment">
-        <action android:id="@+id/action_about_to_todoFragment" app:destination="@id/todoFragment"
-                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action android:id="@+id/action_about_to_todoFragment" app:destination="@id/action_about_to_todoFragment"
+                app:enterAnim="@anim/up_from_bottom" app:exitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>

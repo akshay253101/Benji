@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:id="@+id/todoFragment"
+        <item android:id="@+id/action_about_to_todoFragment"
               android:icon="@drawable/action_task"
               android:title="@string/TodoActivity"/>
-        <item android:id="@+id/about"
+        <item android:id="@+id/action_todoFragment_to_about"
               android:icon="@drawable/action_about"
               android:title="@string/about"/>
     </group>

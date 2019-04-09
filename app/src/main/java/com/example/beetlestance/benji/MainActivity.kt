@@ -3,8 +3,6 @@ package com.example.beetlestance.benji
 import androidx.lifecycle.ViewModelProviders
 import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.example.beetlestance.benji.databinding.ActivityMainBinding
 import com.example.beetlestance.benji.ui.BottomNavigationDrawerFragment
 import dagger.android.support.DaggerAppCompatActivity
@@ -19,25 +17,17 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
         viewModel = ViewModelProviders.of(this@MainActivity).get(MainActivityViewModel::class.java)
-        setSupportActionBar(bottom_app_bar)
+        nav_host_fragment.childFragmentManager.executePendingTransactions()
+        setupBottomAppBar()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.bottom_app_bar_item, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> {
-                val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
-                bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
-            }
+    private fun setupBottomAppBar() {
+        bottom_app_bar.replaceMenu(R.menu.bottom_app_bar_item)
+        bottom_app_bar.setNavigationOnClickListener {
+            val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
+            bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
         }
-        return true
     }
-
     /*override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
     }*/

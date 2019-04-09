@@ -9,10 +9,10 @@ import androidx.room.PrimaryKey
 */
 @Entity
 data class TodoListData(
-    @PrimaryKey var contactId: Int,
-    @ColumnInfo(name = "email") var email: String,
-    @ColumnInfo(name = "firsName") var firsName: String,
-    @ColumnInfo(name = "lastName") var lastName: String,
-    @ColumnInfo(name = "notes") var notes: String,
-    @ColumnInfo(name = "phone") var phone: String
+    @PrimaryKey val contactId: Int,
+    @ColumnInfo(name = "email") val email: String,
+    @ColumnInfo(name = "firsName") val firsName: String,
+    @ColumnInfo(name = "lastName") val lastName: String,
+    @ColumnInfo(name = "notes") val notes: String,
+    @ColumnInfo(name = "phone") val hone: String
 )

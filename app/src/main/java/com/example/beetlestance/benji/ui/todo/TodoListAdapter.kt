@@ -37,5 +37,4 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
             itemBinding.executePendingBindings()
         }
     }
-
 }
