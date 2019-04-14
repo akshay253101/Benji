@@ -25,7 +25,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            applicationIdSuffix ".debug"
             debuggable true
         }
     }
@@ -34,7 +33,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
 
     // Android X
@@ -51,7 +50,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
     testImplementation "androidx.room:room-testing:$room_version"
 
-
     // Recycler View
     implementation "androidx.recyclerview:recyclerview:$androidx_version"
     implementation "com.google.android.material:material:$androidx_version"
@@ -62,7 +60,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
-
 
     // RX Java
     implementation "io.reactivex.rxjava2:rxandroid:$rxjava_version"
@@ -82,4 +79,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
+
+    //Google Sign In
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }

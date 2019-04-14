@@ -3,8 +3,9 @@ package com.example.beetlestance.benji
 import androidx.lifecycle.ViewModelProviders
 import androidx.databinding.DataBindingUtil
 import android.os.Bundle
+import android.view.MenuItem
 import com.example.beetlestance.benji.databinding.ActivityMainBinding
-import com.example.beetlestance.benji.ui.BottomNavigationDrawerFragment
+import com.example.beetlestance.benji.ui.BottomNavigationDrawer.BottomNavigationDrawerFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,21 +29,6 @@ class MainActivity : DaggerAppCompatActivity() {
             bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
         }
     }
-    /*override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
-    }*/
-
-    /*private fun setUpNavigation() {
-        val navController = findNavController(R.id.nav_host_fragment)
-        setSupportActionBar(toolBar)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navBar.setNavigationItemSelectedListener { menuItem ->
-            if (menuItem!=navBar.checkedItem){menuItem.onNavDestinationSelected(navController)}
-            menuItem.isChecked = true
-            drawerLayout.closeDrawers()
-            true
-        }
-    }*/
 }
 
 

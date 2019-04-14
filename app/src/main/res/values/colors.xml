@@ -3,4 +3,19 @@
     <color name="colorPrimary">#03a9f4</color>
     <color name="colorPrimaryDark">#007ac1</color>
     <color name="colorAccent">#67daff</color>
+
+    <color name="color_material_metaphor">#039be5</color>
+    <color name="color_material_bold">#EC407A</color>
+    <color name="color_material_motion">#6a1b9a</color>
+    <color name="color_custom_fragment_1">#E64A19</color>
+    <color name="color_White">#ffffff</color>
+    <color name="color_Black">#000</color>
+
+    <color name="color_dark_material_metaphor">#0277BD</color>
+    <color name="color_dark_material_bold">#D81B60</color>
+    <color name="color_dark_material_motion">#4A148C</color>
+    <color name="color_dark_custom_fragment_1">#BF360C</color>
+
+    <color name="color_material_purple">#673Ab7</color>
+    <color name="background">#F5F5F5</color>
 </resources>

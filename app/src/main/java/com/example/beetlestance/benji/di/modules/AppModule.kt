@@ -1,7 +1,9 @@
 package com.example.beetlestance.benji.di.modules
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.example.beetlestance.benji.MainApplication
+import com.example.beetlestance.benji.constant.Constant
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -24,5 +26,21 @@ class AppModule {
     @Provides
     fun provideContext(mainApplication: MainApplication): Context {
         return mainApplication.applicationContext
+    }
+
+    /*
+    * Provides Shared Preference
+    */
+    @Provides
+    fun provideSharedPreference(mainApplication: MainApplication): SharedPreferences {
+        return mainApplication.applicationContext.getSharedPreferences(Constant.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+    }
+
+    /*
+    * Provides Shared Preference Editor
+    */
+    @Provides
+    fun provideSharedPreferenceEditor(mainApplication: MainApplication): SharedPreferences.Editor {
+        return mainApplication.applicationContext.getSharedPreferences(Constant.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE).edit()
     }
 }

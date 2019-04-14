@@ -2,7 +2,9 @@ package com.example.beetlestance.benji.di.modules
 
 import com.example.beetlestance.benji.MainActivity
 import com.example.beetlestance.benji.di.AppComponent
+import com.example.beetlestance.benji.di.modules.googleSignInModule.GoogleSignInModule
 import com.example.beetlestance.benji.di.scope.ActivityScoped
+import com.example.beetlestance.benji.ui.login.LoginActivity
 import com.example.beetlestance.benji.ui.todo.TodoFragmentModule
 import dagger.android.AndroidInjector
 import dagger.Module
@@ -29,4 +31,11 @@ abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = [TodoFragmentModule::class])
     abstract fun bindMainActivity(): MainActivity
 
+    /**
+     * Generates an [AndroidInjector] for the [LoginActivity].
+     * With [ActivityScoped]
+     */
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = [GoogleSignInModule::class])
+    abstract fun bindLoginActivity(): LoginActivity
 }

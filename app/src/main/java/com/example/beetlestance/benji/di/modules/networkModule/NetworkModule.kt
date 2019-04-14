@@ -2,6 +2,11 @@ package com.example.beetlestance.benji.di.modules.networkModule
 
 import android.content.Context
 import androidx.annotation.NonNull
+import com.example.beetlestance.benji.constant.Constant
+import com.example.beetlestance.benji.constant.Constant.BASE_URL
+import com.example.beetlestance.benji.constant.Constant.APPLICATION_CONTEXT
+import com.example.beetlestance.benji.constant.Constant.CACHE_CONTROL
+import com.example.beetlestance.benji.constant.Constant.IS_ONLINE
 import com.example.beetlestance.benji.di.modules.AppModule
 import com.example.beetlestance.benji.data.RetrofitApiService
 import dagger.Module
@@ -17,7 +22,6 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
-
 /**
  * Defines all the network classes that need to be provided in the scope of the app.
  *
@@ -29,16 +33,14 @@ class NetworkModule : Interceptor {
 
     private var isOnline: Boolean = false
     private lateinit var context: Context
-    private val Cache_Control = "cache-control"
-
     /**
      * Single instance is created of Retrofit RetrofitApiService through out the Application
      */
 
     @Singleton
     @Provides
-    fun retrofitInstanceProvider(@Named("AppContext") context: Context,
-                                 @Named("isOnline") isOnline: Boolean): RetrofitApiService {
+    fun retrofitInstanceProvider(@Named(APPLICATION_CONTEXT) context: Context,
+                                 @Named(IS_ONLINE) isOnline: Boolean): RetrofitApiService {
         this.isOnline = isOnline
         this.context = context
         return retrofitProvider().create(RetrofitApiService::class.java)
@@ -47,7 +49,7 @@ class NetworkModule : Interceptor {
     @Singleton
     private fun retrofitProvider(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/akshay253101/ContactKotlin/master/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .client(okHttpClient())
@@ -104,7 +106,7 @@ class NetworkModule : Interceptor {
         val response = chain.proceed(chain.request())
         val cacheControl = CacheControl.Builder().maxStale(2, TimeUnit.DAYS).build()
 
-        response.newBuilder().removeHeader("Pragma").header(Cache_Control, cacheControl.toString()).build() // remove header pragma in case http header contains value no-cache
+        response.newBuilder().removeHeader("Pragma").header(CACHE_CONTROL, cacheControl.toString()).build() // remove header pragma in case http header contains value no-cache
     }
 
     /*

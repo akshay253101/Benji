@@ -18,6 +18,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/navbar_items"
+            app:headerLayout="@layout/nav_header"
             style="@style/NavigationDrawerStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

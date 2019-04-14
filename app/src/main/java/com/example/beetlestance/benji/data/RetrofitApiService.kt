@@ -1,5 +1,6 @@
 package com.example.beetlestance.benji.data
 
+import com.example.beetlestance.benji.constant.Constant.TODO_LIST_ENDPOINT
 import com.example.beetlestance.benji.model.TodoListData
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -9,7 +10,7 @@ import retrofit2.http.GET
 **/
 interface RetrofitApiService {
 
-    @GET("data.json")
+    @GET(TODO_LIST_ENDPOINT)
     fun getNames(): Observable<List<TodoListData>>
 
 }

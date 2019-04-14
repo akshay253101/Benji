@@ -3,6 +3,7 @@ package com.example.beetlestance.benji.data
 import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import android.widget.Toast
+import com.example.beetlestance.benji.constant.Constant.APPLICATION_CONTEXT
 import com.example.beetlestance.benji.model.TodoListData
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,7 +14,7 @@ import javax.inject.Named
 
 class Repositories @Inject constructor(
     private var retrofitRetrofitApiService: RetrofitApiService, private var db: RoomApiService,
-    @Named("AppContext") var context: Context
+    @Named(APPLICATION_CONTEXT) var context: Context
 ) {
 
     private lateinit var subscription: Disposable
@@ -37,12 +38,6 @@ class Repositories @Inject constructor(
                 { result -> todoListData.value = result },
                 { error -> Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show() }
             )
-        /* subscription = retrofitRetrofitApiService.getNames()
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe(
-                 { result -> todoListData.value = result },
-                 { error -> Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show() })*/
         return todoListData
     }
 

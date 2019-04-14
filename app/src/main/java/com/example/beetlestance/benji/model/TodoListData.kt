@@ -14,5 +14,5 @@ data class TodoListData(
     @ColumnInfo(name = "firsName") val firsName: String,
     @ColumnInfo(name = "lastName") val lastName: String,
     @ColumnInfo(name = "notes") val notes: String,
-    @ColumnInfo(name = "phone") val hone: String
+    @ColumnInfo(name = "phone") val phone: String?
 )
