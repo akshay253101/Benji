@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
-    <QuickContactBadge android:id="@+id/contact_image"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"/>
     <TextView android:id="@+id/email"
+              android:drawableStart="@drawable/action_contact"
+              android:gravity="center_vertical"
+              android:layout_marginTop="@dimen/margin_padding_size_small"
+              android:layout_marginBottom="@dimen/margin_padding_size_small"
+              android:paddingStart="@dimen/margin_padding_size_medium"
+              android:paddingEnd="@dimen/margin_padding_size_medium"
+              android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"/>
+              android:drawablePadding="@dimen/margin_padding_size_medium"
+              android:layout_height="wrap_content"
+              tools:text="@string/app_name"/>
+    <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginEnd="@dimen/margin_padding_size_large"
+            android:layout_marginStart="@dimen/margin_padding_size_large"
+            android:layout_marginTop="@dimen/margin_padding_size_small"
+            android:layout_marginBottom="@dimen/margin_padding_size_small"
+            android:layout_weight="1" tools:ignore="InefficientWeight"/>
+
 
 </LinearLayout>

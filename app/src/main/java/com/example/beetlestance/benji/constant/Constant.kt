@@ -4,6 +4,7 @@ object Constant {
     // Shared Preference
     const val SHARED_PREFERENCE_NAME = "benji"
     const val CURRENT_USER = "user_email"
+    const val CURRENT_USER_PROFILE = "user_profile_pic"
 
     // Status Code
     const val RC_SIGN_IN = 1001

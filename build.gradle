@@ -10,6 +10,7 @@ buildscript {
     ext.rxjava_version = '2.1.0'
     ext.dagger_version = '2.21'
     ext.room_version = "2.1.0-alpha06"
+    ext.glide_version = "4.9.0"
     repositories {
         google()
         jcenter()

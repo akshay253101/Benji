@@ -9,6 +9,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 import android.content.Intent
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
@@ -20,19 +23,24 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 
-class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
+class LoginActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var mGoogleSignInClient: GoogleSignInClient
     @Inject
     lateinit var editor: SharedPreferences.Editor
-
+    private lateinit var viewModel: LoginActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        viewModel = ViewModelProviders.of(this@LoginActivity).get(LoginActivityViewModel::class.java)
+        setupGoogleSignIn()
+    }
+
+    private fun setupGoogleSignIn() {
         sign_in_button.setSize(SignInButton.SIZE_STANDARD)
         sign_in_button.setColorScheme(SignInButton.COLOR_LIGHT)
-        sign_in_button.setOnClickListener(this)
+        sign_in_button.setOnClickListener { signIn() }
     }
 
     override fun onStart() {
@@ -40,12 +48,6 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
         val account = GoogleSignIn.getLastSignedInAccount(this)
         if (account != null) {
             startMainActivity()
-        }
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.sign_in_button -> signIn()
         }
     }
 
@@ -67,7 +69,9 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            editor.putString(Constant.CURRENT_USER, account!!.email).apply()
+            editor.putString(Constant.CURRENT_USER, account!!.email)
+                .putString(Constant.CURRENT_USER_PROFILE,account.photoUrl.toString())
+                .apply()
             startMainActivity()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
