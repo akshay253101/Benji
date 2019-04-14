@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class TodoViewModel @Inject constructor(var todoUseCase: TodoUseCase) : ViewModel() {
 
-    var todoListData = Transformations.map(todoUseCase()){ data -> convertModel(data)}
+    var todoListData = Transformations.map(todoUseCase()) { data -> convertModel(data) }
 
     private fun convertModel(todoListData: List<TodoListData>): List<TodoListData> {
         return todoListData

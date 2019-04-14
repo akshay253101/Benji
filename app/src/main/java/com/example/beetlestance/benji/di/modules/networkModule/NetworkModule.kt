@@ -22,6 +22,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
+
 /**
  * Defines all the network classes that need to be provided in the scope of the app.
  *
@@ -39,8 +40,10 @@ class NetworkModule : Interceptor {
 
     @Singleton
     @Provides
-    fun retrofitInstanceProvider(@Named(APPLICATION_CONTEXT) context: Context,
-                                 @Named(IS_ONLINE) isOnline: Boolean): RetrofitApiService {
+    fun retrofitInstanceProvider(
+        @Named(APPLICATION_CONTEXT) context: Context,
+        @Named(IS_ONLINE) isOnline: Boolean
+    ): RetrofitApiService {
         this.isOnline = isOnline
         this.context = context
         return retrofitProvider().create(RetrofitApiService::class.java)
@@ -106,7 +109,8 @@ class NetworkModule : Interceptor {
         val response = chain.proceed(chain.request())
         val cacheControl = CacheControl.Builder().maxStale(2, TimeUnit.DAYS).build()
 
-        response.newBuilder().removeHeader("Pragma").header(CACHE_CONTROL, cacheControl.toString()).build() // remove header pragma in case http header contains value no-cache
+        response.newBuilder().removeHeader("Pragma").header(CACHE_CONTROL, cacheControl.toString())
+            .build() // remove header pragma in case http header contains value no-cache
     }
 
     /*

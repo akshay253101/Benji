@@ -13,15 +13,15 @@ import java.util.Objects
 import javax.inject.Named
 
 /**
-* ConnectionCheckModule provides isUserOnline or not.
-*/
+ * ConnectionCheckModule provides isUserOnline or not.
+ */
 
 @Module(includes = [AppModule::class])
 class ConnectionCheckModule {
 
     @Named(IS_ONLINE)
     @Provides
-    fun isOnline(@Named(APPLICATION_CONTEXT)context: Context): Boolean {
+    fun isOnline(@Named(APPLICATION_CONTEXT) context: Context): Boolean {
         val connectivityManager: ConnectivityManager
         var networkInfo: NetworkInfo? = null
 

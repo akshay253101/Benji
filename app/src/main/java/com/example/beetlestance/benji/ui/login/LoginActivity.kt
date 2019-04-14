@@ -22,8 +22,10 @@ import javax.inject.Inject
 
 class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
-    @Inject lateinit var mGoogleSignInClient: GoogleSignInClient
-    @Inject lateinit var editor: SharedPreferences.Editor
+    @Inject
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+    @Inject
+    lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +38,11 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
     override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this)
-        if(account!=null){
+        if (account != null) {
             startMainActivity()
         }
     }
+
     override fun onClick(v: View) {
         when (v.id) {
             R.id.sign_in_button -> signIn()
@@ -64,7 +67,7 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            editor.putString(Constant.CURRENT_USER,account!!.email).apply()
+            editor.putString(Constant.CURRENT_USER, account!!.email).apply()
             startMainActivity()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
@@ -75,5 +78,6 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
     private fun startMainActivity() {
         val intent = Intent(this, MainActivity::class.java).apply { }
         startActivity(intent)
+        finish()
     }
 }

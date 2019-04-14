@@ -15,7 +15,8 @@ class DaggerAwareViewModelFactory @Inject constructor(
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val found = creators.entries.find { modelClass.isAssignableFrom(it.key) }   //isAssignableFrom checks if the provide view model is in the creators
+        val found =
+            creators.entries.find { modelClass.isAssignableFrom(it.key) }   //isAssignableFrom checks if the provide view model is in the creators
         val creator = found?.value
             ?: throw IllegalArgumentException("unknown model class $modelClass")  // If key is not mapped in creators key it will throw error
         try {

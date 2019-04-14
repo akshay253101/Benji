@@ -5,7 +5,9 @@ import javax.inject.Inject
 
 class TodoUseCase @Inject constructor(var repositories: Repositories) {
 
-    fun onDispose(){repositories.dispose()}
+    fun onDispose() {
+        repositories.dispose()
+    }
 
     operator fun invoke() = repositories.loadPost()
 }

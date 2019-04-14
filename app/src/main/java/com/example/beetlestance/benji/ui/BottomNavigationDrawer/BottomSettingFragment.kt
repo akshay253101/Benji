@@ -1,35 +1,32 @@
 package com.example.beetlestance.benji.ui.BottomNavigationDrawer
 
-import android.content.Context
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.beetlestance.benji.R
-import com.example.beetlestance.benji.constant.Constant.CURRENT_USER
-import com.example.beetlestance.benji.constant.Constant.SHARED_PREFERENCE_NAME
+import com.example.beetlestance.benji.ui.login.LoginActivity
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
-import kotlinx.android.synthetic.main.bottom_navigation_fragment.*
-import kotlinx.android.synthetic.main.nav_header.view.*
+import kotlinx.android.synthetic.main.bottom_setting_layout.*
 import javax.inject.Inject
 
-class BottomNavigationDrawerFragment : BottomSheetDialogFragment(), HasSupportFragmentInjector {
-
+class BottomSettingFragment : BottomSheetDialogFragment(), HasSupportFragmentInjector {
     @Inject
     lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
     @Inject
-    lateinit var sharedPreferences: SharedPreferences
+    lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         AndroidSupportInjection.inject(this)
-        return inflater.inflate(R.layout.bottom_navigation_fragment, container, false)
+        return inflater.inflate(R.layout.bottom_setting_layout, container, false)
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
@@ -38,15 +35,21 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment(), HasSupportFr
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val header = navigation_view.getHeaderView(0)
-        header.email.text = sharedPreferences.getString(CURRENT_USER, "")
-        val navController = findNavController()
-        navigation_view.setNavigationItemSelectedListener { menuItem ->
-            if (menuItem.itemId != navController.currentDestination!!.id) {
-                navController.navigate(menuItem.itemId)
+        navigation_view_settings.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.action_settings -> Toast.makeText(this.context, "Action Settings", Toast.LENGTH_SHORT).show()
+                R.id.action_sign_out -> signOut()
             }
             dismiss()
             true
+        }
+    }
+
+    private fun signOut() {
+        googleSignInClient.signOut().addOnCompleteListener {
+            val intent = Intent(activity, LoginActivity::class.java)
+            startActivity(intent)
+            activity!!.finish()
         }
     }
 }

@@ -7,7 +7,7 @@
 
 
     <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_view"
+            android:id="@+id/navigation_view_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -17,8 +17,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/nav_bar_items"
-            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/more_settings_items"
             style="@style/NavigationDrawerStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

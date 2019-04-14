@@ -15,7 +15,8 @@
             android:title="@string/action_search"
             app:showAsAction="ifRoom"/>
     <item
-            android:id="@+id/app_bar_settings"
+            android:id="@+id/action_settings"
+            android:icon="@drawable/action_more"
             android:title="@string/action_settings"
             app:showAsAction="always"/>
 
