@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.ui.BottomNavigationDrawer
+package com.example.beetlestance.benji.ui.bottomNavigationDrawer
 
 import android.content.Intent
 import android.os.Bundle

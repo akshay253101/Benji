@@ -22,7 +22,7 @@ class TodoListAdapter : RecyclerView.Adapter<TodoListAdapter.ViewHolder>() {
         return if (::todoList.isInitialized) todoList.size else 0
     }
 
-    override fun onBindViewHolder(viewHolder: TodoListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(todoList[position])
     }
 

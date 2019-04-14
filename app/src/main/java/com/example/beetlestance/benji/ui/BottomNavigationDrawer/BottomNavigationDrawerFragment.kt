@@ -1,6 +1,5 @@
-package com.example.beetlestance.benji.ui.BottomNavigationDrawer
+package com.example.beetlestance.benji.ui.bottomNavigationDrawer
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.constant.Constant.CURRENT_USER
-import com.example.beetlestance.benji.constant.Constant.SHARED_PREFERENCE_NAME
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

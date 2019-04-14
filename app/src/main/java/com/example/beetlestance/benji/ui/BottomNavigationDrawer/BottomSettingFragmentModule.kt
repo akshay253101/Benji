@@ -1,4 +1,4 @@
-package com.example.beetlestance.benji.ui.BottomNavigationDrawer
+package com.example.beetlestance.benji.ui.bottomNavigationDrawer
 
 import com.example.beetlestance.benji.di.modules.googleSignInModule.GoogleSignInModule
 import com.example.beetlestance.benji.di.scope.FragmentScoped

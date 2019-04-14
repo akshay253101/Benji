@@ -4,8 +4,8 @@ import com.example.beetlestance.benji.MainActivity
 import com.example.beetlestance.benji.di.AppComponent
 import com.example.beetlestance.benji.di.modules.googleSignInModule.GoogleSignInModule
 import com.example.beetlestance.benji.di.scope.ActivityScoped
-import com.example.beetlestance.benji.ui.BottomNavigationDrawer.BottomNavigationFragmentModule
-import com.example.beetlestance.benji.ui.BottomNavigationDrawer.BottomSettingFragmentModule
+import com.example.beetlestance.benji.ui.bottomNavigationDrawer.BottomNavigationFragmentModule
+import com.example.beetlestance.benji.ui.bottomNavigationDrawer.BottomSettingFragmentModule
 import com.example.beetlestance.benji.ui.login.LoginActivity
 import com.example.beetlestance.benji.ui.todo.TodoFragmentModule
 import dagger.android.AndroidInjector
@@ -31,8 +31,7 @@ abstract class ActivityBindingModule {
      */
     @ActivityScoped
     @ContributesAndroidInjector(
-        modules = [TodoFragmentModule::class,
-            BottomSettingFragmentModule::class, BottomNavigationFragmentModule::class]
+        modules = [TodoFragmentModule::class, BottomSettingFragmentModule::class, BottomNavigationFragmentModule::class]
     )
     abstract fun bindMainActivity(): MainActivity
 

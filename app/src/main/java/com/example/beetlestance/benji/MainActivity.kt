@@ -5,19 +5,15 @@ import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.widget.Toast
 import com.example.beetlestance.benji.databinding.ActivityMainBinding
-import com.example.beetlestance.benji.ui.BottomNavigationDrawer.BottomNavigationDrawerFragment
-import com.example.beetlestance.benji.ui.BottomNavigationDrawer.BottomSettingFragment
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.example.beetlestance.benji.ui.bottomNavigationDrawer.BottomNavigationDrawerFragment
+import com.example.beetlestance.benji.ui.bottomNavigationDrawer.BottomSettingFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
-    @Inject
-    lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

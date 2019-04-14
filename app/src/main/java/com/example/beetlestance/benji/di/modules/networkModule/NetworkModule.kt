@@ -2,7 +2,6 @@ package com.example.beetlestance.benji.di.modules.networkModule
 
 import android.content.Context
 import androidx.annotation.NonNull
-import com.example.beetlestance.benji.constant.Constant
 import com.example.beetlestance.benji.constant.Constant.BASE_URL
 import com.example.beetlestance.benji.constant.Constant.APPLICATION_CONTEXT
 import com.example.beetlestance.benji.constant.Constant.CACHE_CONTROL

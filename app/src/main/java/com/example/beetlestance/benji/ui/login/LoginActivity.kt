@@ -71,7 +71,7 @@ class LoginActivity : DaggerAppCompatActivity(), View.OnClickListener {
             startMainActivity()
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
-            Log.w("Login Activity", "signInResult:failed code=" + e.statusCode);
+            Log.w("Login Activity", "signInResult:failed code=" + e.statusCode)
         }
     }
 
