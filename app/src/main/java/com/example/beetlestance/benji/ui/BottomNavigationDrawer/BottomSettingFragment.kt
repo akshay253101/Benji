@@ -18,19 +18,13 @@ import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.bottom_setting_layout.*
 import javax.inject.Inject
 
-class BottomSettingFragment : BottomSheetDialogFragment(), HasSupportFragmentInjector {
-    @Inject
-    lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
+class BottomSettingFragment : BottomSheetDialogFragment() {
     @Inject
     lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         AndroidSupportInjection.inject(this)
         return inflater.inflate(R.layout.bottom_setting_layout, container, false)
-    }
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return childFragmentInjector
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
