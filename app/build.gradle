@@ -28,12 +28,17 @@ android {
             debuggable true
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    buildToolsVersion = '28.0.3'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
 
     // Android X
@@ -45,21 +50,21 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
 
     // JUnit Test
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13-beta-2'
     androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
     testImplementation "androidx.room:room-testing:$room_version"
 
     // Recycler View
-    implementation "androidx.recyclerview:recyclerview:$androidx_version"
-    implementation "com.google.android.material:material:$androidx_version"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha05"
+    implementation "com.google.android.material:material:1.1.0-alpha06"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.1'
 
     // RX Java
     implementation "io.reactivex.rxjava2:rxandroid:$rxjava_version"
