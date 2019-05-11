@@ -46,8 +46,8 @@ dependencies {
 
     // JUnit Test
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
     testImplementation "androidx.room:room-testing:$room_version"
 
     // Recycler View
@@ -81,9 +81,9 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
 
     //Google Sign In
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation "com.google.android.gms:play-services-auth:$google_play_service_version"
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 }
