@@ -1,15 +1,24 @@
 package com.example.beetlestance.benji
 
+import com.crashlytics.android.Crashlytics
 import com.example.beetlestance.benji.di.DaggerAppComponent
 import com.example.beetlestance.benji.di.AppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import io.fabric.sdk.android.Fabric
 
 /**
  * Initialization of libraries.
  */
 
 class MainApplication : DaggerApplication() {
+
+
+    override fun onCreate() {
+        super.onCreate()
+        // Enable Crashlytics
+        Fabric.with(this,Crashlytics())
+    }
 
     /**
      * Tell Dagger which [AndroidInjector] to use - in our case
