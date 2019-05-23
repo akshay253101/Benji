@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.example.beetlestance.benji.MainApplication
 import com.example.beetlestance.benji.constant.Constant.APPLICATION_CONTEXT
 import com.example.beetlestance.benji.constant.Constant.SHARED_PREFERENCE_NAME
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -44,5 +45,13 @@ class AppModule {
     fun provideSharedPreferenceEditor(mainApplication: MainApplication): SharedPreferences.Editor {
         return mainApplication.applicationContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
             .edit()
+    }
+
+    /*
+    * Provides Firebase Analytics
+    */
+    @Provides
+    fun provideFirebaseAnalytics(mainApplication: MainApplication): FirebaseAnalytics {
+        return FirebaseAnalytics.getInstance(mainApplication)
     }
 }

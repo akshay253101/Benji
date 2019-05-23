@@ -1,5 +1,7 @@
 package com.example.beetlestance.benji
 
+import android.content.Context
+import androidx.multidex.MultiDex
 import com.crashlytics.android.Crashlytics
 import com.example.beetlestance.benji.di.DaggerAppComponent
 import com.example.beetlestance.benji.di.AppComponent
@@ -18,6 +20,11 @@ class MainApplication : DaggerApplication() {
         super.onCreate()
         // Enable Crashlytics
         Fabric.with(this,Crashlytics())
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     /**

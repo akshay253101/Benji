@@ -1,24 +1,30 @@
 package com.example.beetlestance.benji.ui.todo
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beetlestance.benji.databinding.TodoFragmentBinding
 import com.example.beetlestance.benji.model.TodoListData
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.todo_fragment.*
 import javax.inject.Inject
 
 class TodoFragment : DaggerFragment() {
+    companion object {
+        const val TAG = "TodoFragment"
+    }
 
+    @Inject
+    lateinit var firebaseAnalytics: FirebaseAnalytics
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: TodoFragmentBinding
@@ -33,6 +39,7 @@ class TodoFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        firebaseAnalytics.logEvent(TAG,null)
         binding.layoutManager = LinearLayoutManager(context)
         binding.adapter = todoListAdapter
         viewModel = ViewModelProviders.of(this@TodoFragment, viewModelFactory).get(TodoViewModel::class.java)

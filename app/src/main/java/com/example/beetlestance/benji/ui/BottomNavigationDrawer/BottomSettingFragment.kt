@@ -9,11 +9,16 @@ import android.widget.Toast
 import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.ui.login.LoginActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.bottom_setting_layout.*
+import javax.inject.Inject
 
 class BottomSettingFragment : BottomSheetDialogFragment() {
+
+    @Inject
+    lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         AndroidSupportInjection.inject(this)
@@ -35,7 +40,7 @@ class BottomSettingFragment : BottomSheetDialogFragment() {
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-            activity!!.finish()
+        startActivity(intent)
+        activity!!.finish()
     }
 }

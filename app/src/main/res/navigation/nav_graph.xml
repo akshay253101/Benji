@@ -11,7 +11,7 @@
                 app:enterAnim="@anim/up_from_bottom" app:exitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment android:id="@+id/action_todoFragment_to_about"
-              android:name="com.example.beetlestance.benji.ui.about.About"
+              android:name="com.example.beetlestance.benji.ui.about.AboutFragment"
               android:label="About"
               tools:layout="@layout/about_fragment">
         <action android:id="@+id/action_about_to_todoFragment" app:destination="@id/action_about_to_todoFragment"

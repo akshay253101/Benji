@@ -14,6 +14,7 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.android.support.DaggerAppCompatActivity
@@ -27,6 +28,8 @@ class LoginActivity : DaggerAppCompatActivity() {
         const val TAG = "LoginActivity"
     }
 
+    @Inject
+    lateinit var firebaseAnalytics: FirebaseAnalytics
     @Inject
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
@@ -80,6 +83,9 @@ class LoginActivity : DaggerAppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithCredential:success")
+                        val bundle = Bundle()
+                        bundle.putString("newLogin", auth.currentUser!!.email)
+                        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, Bundle())
                         startMainActivity()
                     } else {
                         // If sign in fails, display a message to the user.

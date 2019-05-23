@@ -1,16 +1,19 @@
 package com.example.beetlestance.benji.ui.about
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.beetlestance.benji.R
 import com.google.android.material.bottomappbar.BottomAppBar
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class About : Fragment() {
+class AboutFragment : DaggerFragment() {
+    companion object {
+        const val TAG = "AboutFragment"
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -25,7 +28,7 @@ class About : Fragment() {
     private fun animateBottomAppBar() {
         activity?.bottom_app_bar?.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
         activity?.fab?.setOnClickListener {
-            Toast.makeText(this@About.context, "About Fragment", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@AboutFragment.context, TAG, Toast.LENGTH_SHORT).show()
         }
     }
 }

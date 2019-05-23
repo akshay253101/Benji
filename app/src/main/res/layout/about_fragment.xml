@@ -3,7 +3,7 @@
              android:id="@+id/about"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".ui.about.About">
+             tools:context=".ui.about.AboutFragment">
     <com.google.android.material.circularreveal.CircularRevealLinearLayout
             android:id="@+id/circular_layout"
             android:layout_width="match_parent"
