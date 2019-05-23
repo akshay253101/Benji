@@ -1,6 +1,7 @@
 package com.example.beetlestance.benji.di.modules.googleSignInModule
 
 import android.content.Context
+import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.constant.Constant.APPLICATION_CONTEXT
 import com.example.beetlestance.benji.di.modules.AppModule
 import com.google.android.gms.auth.api.signin.*
@@ -14,6 +15,7 @@ class GoogleSignInModule {
     @Provides
     fun googleSignInClient(@Named(APPLICATION_CONTEXT) context: Context): GoogleSignInClient {
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(context.getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         return GoogleSignIn.getClient(context, googleSignInOptions)

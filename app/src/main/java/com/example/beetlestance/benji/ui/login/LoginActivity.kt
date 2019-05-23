@@ -1,39 +1,43 @@
 package com.example.beetlestance.benji.ui.login
 
-import android.os.Bundle
-import android.view.View
-import com.example.beetlestance.benji.R
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.common.SignInButton
-import kotlinx.android.synthetic.main.activity_login.*
 import android.content.Intent
-import android.content.SharedPreferences
+import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.tasks.Task
 import com.example.beetlestance.benji.MainActivity
-import com.example.beetlestance.benji.constant.Constant
+import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.constant.Constant.RC_SIGN_IN
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 
 class LoginActivity : DaggerAppCompatActivity() {
 
+    companion object {
+        const val TAG = "LoginActivity"
+    }
+
     @Inject
     lateinit var mGoogleSignInClient: GoogleSignInClient
-    @Inject
-    lateinit var editor: SharedPreferences.Editor
+
+    lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginActivityViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         viewModel = ViewModelProviders.of(this@LoginActivity).get(LoginActivityViewModel::class.java)
+        auth = FirebaseAuth.getInstance()
         setupGoogleSignIn()
     }
 
@@ -45,8 +49,8 @@ class LoginActivity : DaggerAppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        if (account != null) {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
             startMainActivity()
         }
     }
@@ -69,10 +73,20 @@ class LoginActivity : DaggerAppCompatActivity() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            editor.putString(Constant.CURRENT_USER, account!!.email)
-                .putString(Constant.CURRENT_USER_PROFILE,account.photoUrl.toString())
-                .apply()
-            startMainActivity()
+            // Google Sign In was successful, authenticate with Firebase
+            val credential = GoogleAuthProvider.getCredential(account!!.idToken, null)
+            auth.signInWithCredential(credential)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success")
+                        startMainActivity()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.exception)
+                        Snackbar.make(login_view, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
+                    }
+                }
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             Log.w("Login Activity", "signInResult:failed code=" + e.statusCode)

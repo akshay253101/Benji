@@ -6,21 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.ui.login.LoginActivity
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
+import com.google.firebase.auth.FirebaseAuth
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.bottom_setting_layout.*
-import javax.inject.Inject
 
 class BottomSettingFragment : BottomSheetDialogFragment() {
-    @Inject
-    lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         AndroidSupportInjection.inject(this)
@@ -40,10 +33,9 @@ class BottomSettingFragment : BottomSheetDialogFragment() {
     }
 
     private fun signOut() {
-        googleSignInClient.signOut().addOnCompleteListener {
-            val intent = Intent(activity, LoginActivity::class.java)
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
             activity!!.finish()
-        }
     }
 }

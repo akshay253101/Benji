@@ -1,19 +1,20 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <!-- base set of styles that apply to all versions -->
-    <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!-- declare the theme name that's actually applied in the manifest file -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- declare the theme name that's actually applied in the manifest file -->
-    <style name="AppTheme" parent="BaseAppTheme">
-        <!-- Customize your theme here. -->
+    <style name="BottomAppBarTheme" parent="AppTheme">
         <item name="android:textColorSecondary">@android:color/white</item> <!-- Change three dots(Overflow Color) bottom app bar. -->
     </style>
-    
+
+    <style name="FabTheme" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="tint">@color/color_White</item>
+    </style>
     <style name="NavigationDrawerStyle">
         <item name="android:textSize">16sp</item><!-- text size in menu-->
         <item name="android:listPreferredItemHeightSmall">56dp</item><!-- item size in menu-->
