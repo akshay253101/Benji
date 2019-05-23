@@ -10,6 +10,7 @@ import com.example.beetlestance.benji.constant.Constant.RC_SIGN_IN
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
@@ -30,9 +31,8 @@ class LoginActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var firebaseAnalytics: FirebaseAnalytics
-    @Inject
-    lateinit var mGoogleSignInClient: GoogleSignInClient
 
+    lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginActivityViewModel
 
@@ -45,6 +45,11 @@ class LoginActivity : DaggerAppCompatActivity() {
     }
 
     private fun setupGoogleSignIn() {
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
         sign_in_button.setSize(SignInButton.SIZE_STANDARD)
         sign_in_button.setColorScheme(SignInButton.COLOR_LIGHT)
         sign_in_button.setOnClickListener { signIn() }

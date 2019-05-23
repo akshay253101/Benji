@@ -2,7 +2,6 @@ package com.example.beetlestance.benji.di.modules
 
 import com.example.beetlestance.benji.MainActivity
 import com.example.beetlestance.benji.di.AppComponent
-import com.example.beetlestance.benji.di.modules.googleSignInModule.GoogleSignInModule
 import com.example.beetlestance.benji.di.scope.ActivityScoped
 import com.example.beetlestance.benji.ui.about.AboutFragmentModule
 import com.example.beetlestance.benji.ui.bottomNavigationDrawer.BottomNavigationFragmentModule
@@ -42,6 +41,6 @@ abstract class ActivityBindingModule {
      * With [ActivityScoped]
      */
     @ActivityScoped
-    @ContributesAndroidInjector(modules = [GoogleSignInModule::class])
+    @ContributesAndroidInjector
     abstract fun bindLoginActivity(): LoginActivity
 }
