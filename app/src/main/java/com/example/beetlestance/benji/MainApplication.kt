@@ -24,6 +24,7 @@ class MainApplication : DaggerApplication() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+        // MultiDex initialised
         MultiDex.install(this)
     }
 
@@ -34,7 +35,7 @@ class MainApplication : DaggerApplication() {
      */
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().create(this)
+        return DaggerAppComponent.factory().create(this)
     }
 
 }

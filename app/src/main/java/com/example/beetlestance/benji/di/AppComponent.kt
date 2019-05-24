@@ -26,7 +26,7 @@ import javax.inject.Singleton
         RoomDatabaseModule::class]
 )
 interface AppComponent : AndroidInjector<MainApplication> {
-    @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<MainApplication>()
+    @Component.Factory
+    abstract class Builder : AndroidInjector.Factory<MainApplication>
 
 }
