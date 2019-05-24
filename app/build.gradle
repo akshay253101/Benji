@@ -50,73 +50,81 @@ static def getFabricApiKey() {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
 
     // Android X
-    implementation "androidx.legacy:legacy-support-v4:$androidx_version"
-    implementation "androidx.legacy:legacy-support-v4:$androidx_version"
+    implementation "androidx.legacy:legacy-support-v4:$versions.androidx"
+    implementation "androidx.legacy:legacy-support-v4:$versions.androidx"
 
     // Android Lifecycle Architecture And View Model
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$versions.lifecycle"
 
     // JUnit Test
-    testImplementation 'junit:junit:4.13-beta-2'
+    testImplementation 'junit:junit:4.13-beta-3'
     androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
-    testImplementation "androidx.room:room-testing:$room_version"
 
     // Recycler View
-    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha05"
-    implementation "com.google.android.material:material:1.1.0-alpha06"
+    implementation "androidx.recyclerview:recyclerview:$versions.recycler_view"
+
+    //Material Design
+    implementation "com.google.android.material:material:$versions.material"
 
     // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.1'
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
 
     // RX Java
-    implementation "io.reactivex.rxjava2:rxandroid:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxjava"
 
     // Dagger 2
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
 
     // Navigation
-    implementation "android.arch.navigation:navigation-fragment:$navigationVersion"
-    implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
+    implementation "android.arch.navigation:navigation-fragment:$versions.navigation"
+    implementation "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
 
     // Room Database
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-runtime:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+    implementation "androidx.room:room-rxjava2:$versions.room"
+    testImplementation "androidx.room:room-testing:$versions.room"
+
+
 
     //Google Sign In
-    implementation "com.google.android.gms:play-services-auth:$google_play_service_version"
+    implementation "com.google.android.gms:play-services-auth:$versions.google_play_service"
 
     //Glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
     //FireBase
-    implementation "com.google.firebase:firebase-core:$firebase_version"
-    implementation 'com.google.firebase:firebase-auth:17.0.0'
-    implementation 'com.google.firebase:firebase-perf:17.0.0'
+    implementation "com.google.firebase:firebase-core:$versions.firebase"
+    implementation "com.google.firebase:firebase-auth:$versions.firebase_analytics"
+    implementation "com.google.firebase:firebase-perf:$versions.firebase_analytics"
+    implementation "com.google.firebase:firebase-messaging:$versions.firebase_messaging"
 
     // Crashlytics
-    implementation('com.crashlytics.sdk.android:crashlytics:2.10.0@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.10.1@aar') {
         transitive = true
     }
 
     // MultiDex
     implementation 'com.android.support:multidex:1.0.3'
+
+    // Work Manager
+    implementation "androidx.work:work-runtime-ktx:$versions.work"
 }
 
 apply plugin: 'com.google.gms.google-services'
