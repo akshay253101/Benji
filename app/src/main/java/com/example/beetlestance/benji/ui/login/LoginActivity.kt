@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProviders
+import com.example.beetlestance.benji.BaseActivity
 import com.example.beetlestance.benji.MainActivity
 import com.example.beetlestance.benji.R
 import com.example.beetlestance.benji.constant.Constant.RC_SIGN_IN
@@ -18,12 +19,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 
-class LoginActivity : DaggerAppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     companion object {
         const val TAG = "LoginActivity"
@@ -32,8 +32,8 @@ class LoginActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var firebaseAnalytics: FirebaseAnalytics
 
-    lateinit var mGoogleSignInClient: GoogleSignInClient
-    lateinit var auth: FirebaseAuth
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,6 +1,10 @@
 package com.example.beetlestance.benji.constant
 
 object Constant {
+    //Language
+    const val LOCALE_ENGLISH = "en"
+    const val SELECTED_LOCALE = "SELECTED_LOCALE"
+
     // Shared Preference
     const val SHARED_PREFERENCE_NAME = "benji"
     const val CURRENT_USER = "user_email"

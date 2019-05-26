@@ -2,12 +2,12 @@ package com.example.beetlestance.benji.di.modules.networkModule
 
 import android.content.Context
 import androidx.annotation.NonNull
-import com.example.beetlestance.benji.constant.Constant.BASE_URL
 import com.example.beetlestance.benji.constant.Constant.APPLICATION_CONTEXT
+import com.example.beetlestance.benji.constant.Constant.BASE_URL
 import com.example.beetlestance.benji.constant.Constant.CACHE_CONTROL
 import com.example.beetlestance.benji.constant.Constant.IS_ONLINE
-import com.example.beetlestance.benji.di.modules.AppModule
 import com.example.beetlestance.benji.data.RetrofitApiService
+import com.example.beetlestance.benji.di.modules.AppModule
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -79,7 +79,7 @@ class NetworkModule : Interceptor {
     */
 
     private fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val httpLoggingInterceptor = HttpLoggingInterceptor {}
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
         return httpLoggingInterceptor
     }

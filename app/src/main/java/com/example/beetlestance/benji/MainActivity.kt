@@ -8,11 +8,10 @@ import com.example.beetlestance.benji.databinding.ActivityMainBinding
 import com.example.beetlestance.benji.ui.bottomNavigationDrawer.BottomNavigationDrawerFragment
 import com.example.beetlestance.benji.ui.bottomNavigationDrawer.BottomSettingFragment
 import com.google.firebase.analytics.FirebaseAnalytics
-import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     companion object {
         const val TAG = "MainActivity"
