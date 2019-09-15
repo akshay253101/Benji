@@ -54,7 +54,7 @@ object Dependencies {
 
         //FireBase
         Libs.firebase_core,
-        Libs.firebase_core,
+        Libs.firebase_auth,
         Libs.firebase_perf,
         Libs.firebase_messaging,
 

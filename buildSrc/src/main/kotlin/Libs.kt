@@ -216,6 +216,8 @@ object Libs {
   const val dagger_compiler: String = "com.google.dagger:dagger-compiler:" +
       Versions.com_google_dagger
 
+  const val firebase_auth: String = "com.google.firebase:firebase-auth:" + Versions.firebase_auth
+
   const val firebase_core: String = "com.google.firebase:firebase-core:" + Versions.firebase_core
 
   const val firebase_messaging: String = "com.google.firebase:firebase-messaging:" +

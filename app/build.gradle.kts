@@ -72,12 +72,12 @@ dependencies {
         isTransitive = true
     }
 
-    ktlintRuleset("com.github.username:rulseset:master-SNAPSHOT")
+    ktlintRuleset(Libs.rulseset)
     ktlintRuleset(files("/path/to/custom/rulseset.jar"))
 }
 
 kapt {
-    useBuildCache = true
+    useBuildCache = false
 }
 
 ktlint {

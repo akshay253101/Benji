@@ -60,6 +60,8 @@ object Versions {
 
   const val com_google_dagger: String = "2.24"
 
+  const val firebase_auth: String = "19.0.0"
+
   const val firebase_core: String = "17.2.0"
 
   const val firebase_messaging: String = "20.0.0"

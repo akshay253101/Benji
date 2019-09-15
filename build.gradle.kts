@@ -8,12 +8,12 @@ buildscript {
         maven(url = "https://plugins.gradle.org/m2/")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.5.0") // Gradle Build Tools
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.org_jetbrains_kotlin}") // Kotlin
-        classpath("com.google.gms:google-services:4.3.2") // Google Play Service
-        classpath("io.fabric.tools:gradle:${Versions.io_fabric_tools_gradle}") // Fabric Tools
-        classpath("com.google.firebase:perf-plugin:1.3.1")  // Performance Monitoring plugin
-        classpath("org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktlint_gradle}")
+        classpath(Libs.com_android_tools_build_gradle) // Gradle Build Tools
+        classpath(Libs.kotlin_gradle_plugin) // Kotlin
+        classpath(Libs.google_services) // Google Play Service
+        classpath(Libs.io_fabric_tools_gradle) // Fabric Tools
+        classpath(Libs.perf_plugin)  // Performance Monitoring plugin
+        classpath(Libs.ktlint_gradle)
         // NOTE: Do not place your application Versions here they belong
         // in the individual module build.gradle.kts files
     }
