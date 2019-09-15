@@ -21,4 +21,7 @@ object Versions {
     const val idling_resources = "3.1.1"
     const val multidex_version = "1.0.3"
     const val crashlytics_version = "2.10.1@aar"
+    const val ktlintPlugin = "8.2.0"
+    const val gradlePublishPlugin = "0.10.1"
+    const val androidPlugin = "3.4.0"
 }

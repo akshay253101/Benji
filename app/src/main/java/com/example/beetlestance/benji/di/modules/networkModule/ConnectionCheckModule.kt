@@ -2,14 +2,13 @@ package com.example.beetlestance.benji.di.modules.networkModule
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import android.util.Log
+import android.net.Network
+import android.net.NetworkRequest
 import com.example.beetlestance.benji.constant.Constant.APPLICATION_CONTEXT
 import com.example.beetlestance.benji.constant.Constant.IS_ONLINE
 import com.example.beetlestance.benji.di.modules.AppModule
 import dagger.Module
 import dagger.Provides
-import java.util.Objects
 import javax.inject.Named
 
 /**
@@ -22,17 +21,29 @@ class ConnectionCheckModule {
     @Named(IS_ONLINE)
     @Provides
     fun isOnline(@Named(APPLICATION_CONTEXT) context: Context): Boolean {
-        val connectivityManager: ConnectivityManager
-        var networkInfo: NetworkInfo? = null
+        val connectivityManager: ConnectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val builder = NetworkRequest.Builder()
+        var isOnline = false
 
-        try {
-            connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            networkInfo = Objects.requireNonNull(connectivityManager).activeNetworkInfo
-        } catch (e: Exception) {
-            Log.e("connectivity", e.toString())
-        }
+        connectivityManager.registerNetworkCallback(
+            builder.build(),
+            object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    isOnline = true
+                }
 
-        return networkInfo != null && networkInfo.isConnected
+                override fun onLost(network: Network) {
+                    isOnline = false
+                }
+
+                override fun onUnavailable() {
+                    isOnline = false
+                }
+            }
+        )
+
+        return isOnline
 
     }
 

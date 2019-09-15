@@ -1,3 +1,4 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 import java.io.FileInputStream
 import java.util.*
 
@@ -5,6 +6,7 @@ plugins {
     id("com.android.application")
     id("io.fabric")
     id("com.google.firebase.firebase-perf")
+    id("org.jlleitschuh.gradle.ktlint")
 
     kotlin("android")
     kotlin("android.extensions")
@@ -69,7 +71,31 @@ dependencies {
     implementation(Dependencies.Crashlytics.crashlytics) {
         isTransitive = true
     }
+
+    ktlintRuleset("com.github.username:rulseset:master-SNAPSHOT")
+    ktlintRuleset(files("/path/to/custom/rulseset.jar"))
 }
+
+ktlint {
+    android.set(true)
+    version.set(Versions.ktlintPlugin)
+    debug.set(true)
+    verbose.set(true)
+    android.set(false)
+    outputToConsole.set(true)
+    reporters.set(setOf(ReporterType.PLAIN, ReporterType.CHECKSTYLE))
+    ignoreFailures.set(true)
+    enableExperimentalRules.set(true)
+    additionalEditorconfigFile.set(file("/some/additional/.editorconfig"))
+    kotlinScriptAdditionalPaths {
+        include(fileTree("scripts/"))
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
+}
+
 
 apply(mapOf("plugin" to "com.google.gms.google-services"))
 
