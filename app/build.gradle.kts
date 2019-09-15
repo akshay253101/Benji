@@ -55,20 +55,20 @@ fun getFabricApiKey(): Any? {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
 
-    for (dependency in Libraries.coreDependencies) {
+    for (dependency in Dependencies.coreDependencies) {
         implementation(dependency)
     }
 
-    for (dependency in Libraries.testDependencies) {
+    for (dependency in Dependencies.testDependencies) {
         implementation(dependency)
     }
 
-    for (dependency in Libraries.kaptDependencies) {
+    for (dependency in Dependencies.kaptDependencies) {
         kapt(dependency)
     }
 
     // Crashlytics
-    implementation(Dependencies.Crashlytics.crashlytics) {
+    implementation(Libs.crashlytics) {
         isTransitive = true
     }
 
@@ -76,9 +76,13 @@ dependencies {
     ktlintRuleset(files("/path/to/custom/rulseset.jar"))
 }
 
+kapt {
+    useBuildCache = true
+}
+
 ktlint {
     android.set(true)
-    version.set(Versions.ktlintPlugin)
+    version.set(Versions.ktlint_gradle)
     debug.set(true)
     verbose.set(true)
     android.set(false)
