@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 import java.io.FileInputStream
 import java.util.*
@@ -70,6 +71,11 @@ dependencies {
     // Crashlytics
     implementation(Libs.crashlytics) {
         isTransitive = true
+    }
+
+    // compile bytecode to java 8 (default is java 6)
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "1.8"
     }
 
     ktlintRuleset(Libs.rulseset)

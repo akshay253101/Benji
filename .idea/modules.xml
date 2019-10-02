@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Benji.iml" filepath="$PROJECT_DIR$/.idea/Benji.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Benji.iml" filepath="$PROJECT_DIR$/Benji.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
     </modules>
